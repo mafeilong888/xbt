@@ -33,7 +33,6 @@ jobs:
       - name: '运行 【笑谱】'
         if: env.XP_refreshTOKEN
         run: |
-          cd ~/Ac_JS_Sip
           node iboxpay.js
         env:
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
