@@ -1,0 +1,56 @@
+{
+  "name": "pentonville",
+  "version": "1.0.18",
+  "description": "Pentonville",
+  "keywords": [
+    "Pentonville",
+    "React",
+    "tab",
+    "tabindex",
+    "input",
+    "HTML",
+    "element",
+    "focus"
+  ],
+  "main": "./index.js",
+  "author": "Jonathan Perry for Sequence Media Limited <sequencemedia@sequencemedia.net>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.19.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/sequencemedia/pentonville.git"
+  },
+  "scripts": {
+    "build": "babel src -d lib",
+    "build:watch": "babel src -d lib -w",
+    "prepublishOnly": "npm run build",
+    "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "pre-commit": "npm run lint && npm run build && git add lib"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.14",
+    "@babel/eslint-parser": "^7.13.14",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-react": "^7.13.13",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "core-js": "^3.10.0",
+    "eslint": "^7.23.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-import-resolver-babel-module": "^5.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-react": "^7.23.1",
+    "husky": "^6.0.0",
+    "prop-types": "15.7.2",
+    "react": "16.14.0",
+    "react-dom": "16.14.0"
+  }
+}
