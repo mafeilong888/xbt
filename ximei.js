@@ -35,18 +35,18 @@ https://raw.githubusercontent.com/age174/-/main/feizao.box.json
 
 [rewrite_local]
 #西梅
-https://app.hubonews.com/.+/articles/list url script-request-body https://raw.githubusercontent.com/age174/-/main/ximei.js
+https://app.hubonews.com/v3/articles/list url script-request-body https://raw.githubusercontent.com/age174/-/main/ximei.js
 
 
 
 #loon
-https://app.hubonews.com/.+/articles/list script-path=https://raw.githubusercontent.com/age174/-/main/ximei.js, requires-body=true, timeout=10, tag=西梅
+https://app.hubonews.com/v3/articles/list script-path=https://raw.githubusercontent.com/age174/-/main/ximei.js, requires-body=true, timeout=10, tag=西梅
 
 
 
 #surge
 
-西梅 = type=http-request,pattern=https://app.hubonews.com/.+/articles/list,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/age174/-/main/ximei.js,script-update-interval=0
+西梅 = type=http-request,pattern=https://app.hubonews.com/v3/articles/list,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/age174/-/main/ximei.js,script-update-interval=0
 
 
 
@@ -66,18 +66,54 @@ let ximeiurl = $.getdata('ximeiurl')
 let ximeihd = $.getdata('ximeihd')
 let st = '@123hb#*^&xiMEI99'
 let ximeikey = '',id = '',uid='',tid='',name=''
+
+
+if(!$.isNode()&&ximeihd.indexOf("\n") ==-1){
+    ximeiurlArr.push($.getdata('ximeiurl'))
+    ximeihdArr.push($.getdata('ximeihd'))
+} else {
+    if($.isNode()){
+    if (process.env.XIMEI_HD && process.env.XIMEI_HD.indexOf('\n') > -1) {
+        ximeihd = process.env.XIMEI_HD.split('\n');
+    } else {
+        ximeihd = [process.env.XIMEI_HD]
+    };
+    if (process.env.XIMEI_URL && process.env.XIMEI_URL.indexOf('\n') > -1) {
+        ximeiurl = process.env.XIMEI_URL.split('\n');
+    } else {
+        ximeiurl = [process.env.XIMEI_URL]
+    };
+    console.log(` ============脚本执行 - 北京时间 (UTC + 8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()} =============\n`);
+ } else if(!$.isNode()&&ximeihd.indexOf("\n")>-1){
+   ximeihd = ximeihd.split("\n")
+   ximeiurl = ximeiurl.split("\n")
+};
+    Object.keys(ximeihd).forEach((item) =>{
+        if (ximeihd[item]) {
+        ximeihdArr.push(ximeihd[item])
+        }
+    });
+    Object.keys(ximeiurl).forEach((item) =>{
+        if (ximeiurl[item]) {
+            ximeiurlArr.push(ximeiurl[item])
+        }
+    });		
+
+}
+
 !(async () => {
-  if (typeof $request !== "undefined") {
+  if (isximeick = typeof $request !== "undefined") {
     await ximeick()
    
-  } else {ximeiurlArr.push($.getdata('ximeiurl'))
-    ximeihdArr.push($.getdata('ximeihd'))
+  } else {
+	  //ximeiurlArr.push($.getdata('ximeiurl'))
+    //ximeihdArr.push($.getdata('ximeihd'))
     let ximeicount = ($.getval('ximeicount') || '1');
   for (let i = 2; i <= ximeicount; i++) {
     ximeiurlArr.push($.getdata(`ximeiurl${i}`))
     ximeihdArr.push($.getdata(`ximeihd${i}`))
   }
-    console.log(`------------- 共${ximeihdArr.length}个账号-------------\n`)
+    console.log(`------------- 共${ximeihdArr.length}个西梅账号-------------\n`)
       for (let i = 0; i < ximeihdArr.length; i++) {
         if (ximeihdArr[i]) {
          
@@ -87,7 +123,6 @@ let ximeikey = '',id = '',uid='',tid='',name=''
           console.log(`\n开始【西梅${$.index}】`)
           await ximei1();
           await ximeixx();
-          
 
   }
 }}
@@ -116,10 +151,10 @@ $.log(ximeihd)
 function ximei1(timeout = 0) {
   return new Promise((resolve) => {
     setTimeout( ()=>{
-      if (typeof $.getdata('ximeihd') === "undefined") {
-        $.msg($.name,"",'请先获取西梅数据!😓',)
-        $.done()
-      }
+      //if (typeof $.getdata('ximeihd') === "undefined") {
+        //$.msg($.name,"",'请先获取西梅数据!😓',)
+        //$.done()
+      //}
 
 let url = {
         url : "https://app.hubonews.com/v3/articles/list",
@@ -342,7 +377,7 @@ if(result.data.point >=100){
 $.log('西梅-检测到当前梅子可提现,执行提现任务')
 await ximeitx();
 }
-        
+		
 } else {
        console.log('\n西梅用户信息获取失败  '+result.msg)
 }
@@ -355,7 +390,6 @@ await ximeitx();
     },timeout)
   })
 }
-
 //西梅任务提现
 function ximeitx(timeout = 0) {
   return new Promise((resolve) => {
