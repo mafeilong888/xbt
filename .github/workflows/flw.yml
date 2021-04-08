@@ -31,13 +31,11 @@ jobs:
       - name: npm install
 
         run: |
-          cd ~/ZY
           npm install
       - name: '运行 【返利网】'
   
         run: |
-          cd ~/ZY
-          node Task/flw.js
+          node flw.js
         env:
           
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
