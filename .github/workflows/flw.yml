@@ -30,6 +30,7 @@ jobs:
         with:
           node-version: 12.x
       - name: npm install
+        if: env.FL_flwURL
         run: |
           npm install
       - name: '运行 【返利网】'
