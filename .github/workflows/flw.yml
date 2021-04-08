@@ -21,10 +21,10 @@ jobs:
         FL_FLWYDBODY: ${{ secrets.FL_flwydBODY }}      
         FL_CASH: ${{ secrets.FL_CASH }}//天天领现金提现
         FL_DHCASH: ${{ secrets.FL_DHCASH }}//签到活动兑换
+
     steps:
       - name: Checkout
-        run: |
-          git clone https://github.com/pizile666/ZY.git ~/ZY
+        uses: actions/checkout@v2
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
