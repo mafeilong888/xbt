@@ -30,6 +30,7 @@ jobs:
         if: env.FL_flwURL
         run: |
           cd ~/Ac-JS-Sip
+          git checkout ZIYE
           npm install
       - name: '运行 【返利网】'
         if: env.FL_flwURL
