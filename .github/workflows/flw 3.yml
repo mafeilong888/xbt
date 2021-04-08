@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/baodandan2020/copyfor302.git ~/copyfor302
+          git clone https://github.com/xbt370/Ac-JS-Sip.git ~/copyfor302
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
@@ -29,14 +29,14 @@ jobs:
       - name: npm install
         if: env.FL_flwURL
         run: |
-          cd ~/copyfor302
+          cd ~/Ac-JS-Sip
           git checkout ZIYE
           npm install
       - name: '运行 【返利网】'
         if: env.FL_flwURL
         run: |
-          cd ~/copyfor302
-          node Task/flw.js
+          cd ~/Ac-JS-Sip
+          node flw.js
         env:
           
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
