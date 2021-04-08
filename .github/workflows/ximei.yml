@@ -1,4 +1,4 @@
-name: ximei
+name: 西梅
 
 on:
   workflow_dispatch:
