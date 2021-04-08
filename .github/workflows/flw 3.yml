@@ -3,7 +3,7 @@ name: 返利网
 on:
   workflow_dispatch:
   schedule:
-     - cron: '0 2,15 * * *'
+     - cron: '0 23,2,15 * * *'
   watch:
     types: started
 jobs:
@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/baodandan2020/copyfor302.git ~/copyfor302
+          git clone https://github.com/xbt370/Ac-JS-Script.git ~/Ac-JS-Script
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
@@ -29,14 +29,14 @@ jobs:
       - name: npm install
         if: env.FL_flwURL
         run: |
-          cd ~/copyfor302
-          git checkout ZIYE
+          cd ~/Ac-JS-Script
+          git checkout main
           npm install
       - name: '运行 【返利网】'
         if: env.FL_flwURL
         run: |
-          cd ~/copyfor302
-          node Task/flw.js
+          cd ~/Ac-JS-Script
+          node flw.js
         env:
           
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
