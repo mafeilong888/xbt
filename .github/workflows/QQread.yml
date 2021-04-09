@@ -34,7 +34,7 @@ jobs:
         if: env.QQ_QQreadURL
         run: |
           cd ~/Ac-JS-Script
-          node Task/QQread.js
+          node QQread.js
         env:
           
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
