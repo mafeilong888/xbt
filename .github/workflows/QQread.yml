@@ -11,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
-        QQ_QQreadURL: ${{ secrets. QQ_QQreadURL }}
+        QQ_QQreadURL: ${{ secrets.QQ_QQreadURL }}
       - name: Checkout
         run: |
           git clone https://github.com/xbt370/Ac-JS-Script.git ~/Ac-JS-Script
-      - name: Use Node.js 12.x
+      - name: Use Node.js 10.x
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 10.x
       - name: npm install
         if: env.QQ_QQreadURL
         run: |
