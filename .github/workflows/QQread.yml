@@ -37,7 +37,7 @@ jobs:
       - name: '运行 【QQ阅读】'
         if: env.QQ_QQreadURL
         run: |
-          cd ~/AC-JS-Script
+          cd ~/Ac-JS-Script
           node QQread.js
         env:
           
