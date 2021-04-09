@@ -6,7 +6,7 @@ name: QQ阅读
 on:
   workflow_dispatch:
   schedule:
-     - cron: '*/30 6-23 * * *'
+     - cron: '*/30 22-15 * * *'
   watch:
     types: started
 jobs:
@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/banditlives/zzymg.git ~/zzymg
+          git clone https://github.com/xbt370/Ac-JS-Script.git ~/Ac-JS-Script
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
@@ -27,13 +27,13 @@ jobs:
       - name: npm install
         if: env.QQ_QQreadURL
         run: |
-          cd ~/zzymg
-          git checkout master
+          cd ~/Ac-JS-Script
+          git checkout main
           npm install
       - name: '运行 【QQ阅读】'
         if: env.QQ_QQreadURL
         run: |
-          cd ~/zzymg
+          cd ~/Ac-JS-Script
           node Task/QQread.js
         env:
           
