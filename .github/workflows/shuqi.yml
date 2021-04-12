@@ -33,7 +33,7 @@ jobs:
           npm install
       - name: '运行 【舒淇小说】'
         run: |
-          node Task/shuqi.js
+          node shuqi.js
         env:
           #RLURL: ${{ secrets.RLURL }}
           #RLHEADER: ${{ secrets.RLHEADER }}
