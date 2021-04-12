@@ -12,7 +12,6 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     env:
         MH_HD: ${{ secrets.MH_HD }}
-        TZ: Asia/shanghai
     steps:
       - name: Checkout
         uses: actions/checkout@v2
