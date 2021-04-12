@@ -26,7 +26,7 @@ jobs:
       - name: '运行 【陌嗨短视频】'
         if: env.MH_HD
         run: |
-          node Task/mhdsp.js
+          node mhdsp.js
         env:
           MH_HD: ${{ secrets.MH_HD }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
