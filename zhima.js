@@ -1,8 +1,8 @@
 /* ziye 
-github地址 https://github.com/ziye888
+github地址 https://github.com/*ziye12
 TG频道地址  https://t.me/ziyescript
 TG交流群   https://t.me/joinchat/AAAAAE7XHm-q1-7Np-tF3g
-boxjs链接  https://cdn.jsdelivr.net/gh/ziye888/JavaScript@main/Task/ziye.boxjs.json
+boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.boxjs.json
 转载请备注个名字，谢谢
 
 ⚠️芝嫲视频
@@ -10,17 +10,13 @@ boxjs链接  https://cdn.jsdelivr.net/gh/ziye888/JavaScript@main/Task/ziye.boxjs
 
 2.13 制作
 2.15 修复刷新问题,修复部分问题,点夺宝获取ck
-2.24 增加自动提现，需要自行获取对应数值的body，并填写CASH变量
-2.24-2 修复刷新错误，务必更新
-2.25 修复版本更新带来的晶石收取问题
-3.8 替换为循环获取ck
 
 ⚠️一共1个位置 1个ck  👉 1条 Secrets
 多账号换行
 
-点击 https://h5.sxsjyzm.com/sesameH5/public/sesameLogin/register.html?onlyid=613647529 下载APP
+点击 https://h5.sxsjyzm.com/sesameH5/public/sesameLogin/register.html?onlyid=612545154 下载APP
 
-或者商店搜索 芝嫲视频 邀请码613647529
+或者商店搜索 芝嫲视频 邀请码612545154
 
 谢谢支持
 
@@ -33,9 +29,6 @@ boxjs链接  https://cdn.jsdelivr.net/gh/ziye888/JavaScript@main/Task/ziye.boxjs
 
 
 zhimabodyVal 👉ZM_zhimabody
-zhimatxbodyVal 👉ZM_zhimatxbody
-
-CASH 👉ZM_CASH   可设置0.3 0.5 1 5 10 30 50 100 等等，设置完后自行获取对应body
 
 
 
@@ -50,16 +43,16 @@ hostname=api.sxsjyzm.com,
 ############## 圈x
 
 #芝嫲视频获取body
-https:\/\/api\.sxsjyzm\.com\/* url script-request-body https://cdn.jsdelivr.net/gh/ziye888/JavaScript@main/Task/zhima.js   
+https:\/\/api\.sxsjyzm\.com\/* url script-request-body https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/zhima.js   
 
 ############## loon
 #芝嫲视频获取body
-http-request https:\/\/api\.sxsjyzm\.com\/* script-path=https://cdn.jsdelivr.net/gh/ziye888/JavaScript@main/Task/zhima.js,requires-body=true, tag=芝嫲视频获取body
+http-request https:\/\/api\.sxsjyzm\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/zhima.js,requires-body=true, tag=芝嫲视频获取body
 
 ############## surge
 
 #芝嫲视频获取body
-芝嫲视频获取body = type=http-request,pattern=https:\/\/api\.sxsjyzm\.com\/*,requires-body=1,max-size=0,script-path=https://cdn.jsdelivr.net/gh/ziye888/JavaScript@main/Task/zhima.js 
+芝嫲视频获取body = type=http-request,pattern=https:\/\/api\.sxsjyzm\.com\/*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/zhima.js 
 
 
 
@@ -76,19 +69,14 @@ const COOKIE = $.isNode() ? require("./zhimaCOOKIE") : ``;
 const logs = 0; // 0为关闭日志，1为开启
 const notifyttt = 1 // 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 2; // 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
-$.message = '', COOKIES_SPLIT = '', CASH = '', ddtime = '';
+$.message = '', COOKIES_SPLIT = '', ddtime = '';
 const zhimabodyArr = [];
 let zhimabodyVal = ``;
 let middlezhimabody = [];
 
-const zhimatxbodyArr = [];
-let zhimatxbodyVal = ``;
-let middlezhimatxbody = [];
 
-if ($.isNode()) {
-    // 没有设置 ZM_CASH 则默认为 0 不提现
-    CASH = process.env.ZM_CASH || 0;
-}
+
+
 
 if ($.isNode() && process.env.ZM_zhimabody) {
     COOKIES_SPLIT = process.env.COOKIES_SPLIT || "\n";
@@ -105,44 +93,35 @@ if ($.isNode() && process.env.ZM_zhimabody) {
     } else {
         middlezhimabody = process.env.ZM_zhimabody.split();
     }
-
-    if (
-        process.env.ZM_zhimatxbody &&
-        process.env.ZM_zhimatxbody.indexOf(COOKIES_SPLIT) > -1
-    ) {
-        middlezhimatxbody = process.env.ZM_zhimatxbody.split(COOKIES_SPLIT);
-    } else {
-        middlezhimatxbody = process.env.ZM_zhimatxbody.split();
-    }
+    
 }
-if (COOKIE.zhimabodyVal) {
+if (COOKIE.zhimabodyArr) {
     ZM_COOKIES = {
         "zhimabodyVal": COOKIE.zhimabodyVal.split('\n'),
-        "zhimatxbodyVal": COOKIE.zhimatxbodyVal.split('\n'),
+    
+
+
     }
-    Length = ZM_COOKIES.zhimabodyVal.length;
+    Length = ZM_COOKIES.zhimabodyArr.length;
 }
-if (!COOKIE.zhimabodyVal) {
+if (!COOKIE.zhimabodyArr) {
     if ($.isNode()) {
         Object.keys(middlezhimabody).forEach((item) => {
             if (middlezhimabody[item]) {
                 zhimabodyArr.push(middlezhimabody[item]);
-                zhimatxbodyArr.push(middlezhimatxbody[item]);
             }
         });
-
+        
     } else {
         zhimabodyArr.push($.getdata("zhimabody"));
-        zhimatxbodyArr.push($.getdata("zhimatxbody"));
+        
         // 根据boxjs中设置的额外账号数，添加存在的账号数据进行任务处理
-        if ("zhimaCASH") {
-            CASH = $.getval("zhimaCASH") || '0';
-        }
+
         let zhimaCount = ($.getval('zhimaCount') || '1') - 0;
         for (let i = 2; i <= zhimaCount; i++) {
             if ($.getdata(`zhimabody${i}`)) {
                 zhimabodyArr.push($.getdata(`zhimabody${i}`));
-                zhimatxbodyArr.push($.getdata(`zhimatxbody${i}`));
+                
 
 
             }
@@ -150,91 +129,28 @@ if (!COOKIE.zhimabodyVal) {
     }
 
 
-    if (zhimabodyArr == '') {
+if (zhimabodyArr == '') {
         Length = 0
     } else Length = zhimabodyArr.length
 
-
+    
 }
+
+
 
 
 function GetCookie() {
     if ($request && $request.url.indexOf("loot") >= 0 && $request.url.indexOf("index") >= 0) {
-
         const zhimabodyVal = $request.body;
-        if (zhimabodyVal) {
-            cookie()
+        if (zhimabodyVal) $.setdata(zhimabodyVal, "zhimabody" + $.idx);
+        $.log(
+            `[${$.name + $.idx}] 获取zhimabodyVal✅: 成功,zhimabodyVal: ${zhimabodyVal}`
+        );
+        $.msg($.name + $.idx, `获取zhimabodyVal: 成功🎉`, ``);
 
-            function cookie() {
-                bodys = $.getdata('zhimabody' + $.idx);
-                 if (bodys) {
-                    if (bodys.indexOf(zhimabodyVal) >= 0) {
-                        $.log(
-                            `[${$.name + $.idx}] zhimabodyVal已存在✅: zhimabodyVal: ${zhimabodyVal}`
-                        );
-                        $.msg($.name + $.idx, `zhimabodyVal已存在: 🎉`, ``);
-                        $.done();
-                    } else if ($.idx == '') {
-                        $.idx = 2
-                        cookie()
-                    } else {
-                        $.idx = $.idx + 1
-                        cookie()
-                    }
-                } else {
-                    {
-                        $.setdata(zhimabodyVal, "zhimabody" + $.idx);
-                        $.log(
-                            `[${$.name + $.idx}] 获取zhimabodyVal✅: 成功,zhimabodyVal: ${zhimabodyVal}`
-                        );
-                        $.msg($.name + $.idx, `获取zhimabodyVal: 成功🎉`, ``);
 
-                        $.done();
-                    }
-                };
 
-            }
 
-        }
-
-    }
-
-    if ($request && $request.url.indexOf("userWxCashSubmit") >= 0) {
-        const zhimatxbodyVal = $request.body;
-        if (zhimatxbodyVal) {
-            cookie()
-
-            function cookie() {
-                bodys = $.getdata('zhimatxbody' + $.idx);
-                 if (bodys) {
-                    if (bodys.indexOf(zhimatxbodyVal) >= 0) {
-                        $.log(
-                            `[${$.name + $.idx}] zhimatxbodyVal已存在✅: zhimatxbodyVal: ${zhimatxbodyVal}`
-                        );
-                        $.msg($.name + $.idx, `zhimatxbodyVal已存在: 🎉`, ``);
-                        $.done();
-                    } else if ($.idx == '') {
-                        $.idx = 2
-                        cookie()
-                    } else {
-                        $.idx = $.idx + 1
-                        cookie()
-                    }
-                } else {
-                    {
-                        $.setdata(zhimatxbodyVal, "zhimatxbody" + $.idx);
-                        $.log(
-                            `[${$.name + $.idx}] 获取zhimatxbodyVal✅: 成功,zhimatxbodyVal: ${zhimatxbodyVal}`
-                        );
-                        $.msg($.name + $.idx, `获取zhimatxbodyVal: 成功🎉`, ``);
-
-                        $.done();
-                    }
-                };
-
-            }
-
-        }
     }
 
 }
@@ -259,7 +175,7 @@ nowTimes = new Date(
 //今天
 Y = nowTimes.getFullYear() + '-';
 M = (nowTimes.getMonth() + 1 < 10 ? '0' + (nowTimes.getMonth() + 1) : nowTimes.getMonth() + 1) + '-';
-D = (nowTimes.getDate() < 10 ? '0' + (nowTimes.getDate()) : nowTimes.getDate());
+D = (nowTimes.getDate() + 1 < 10 ? '0' + (nowTimes.getDate()) : nowTimes.getMonth());
 ddtime = Y + M + D;
 console.log(ddtime)
 
@@ -308,39 +224,6 @@ function time(inputTime) {
     s = date.getSeconds();
     return Y + M + D + h + m + s;
 };
-//随机udid 大写
-function udid() {
-    var s = [];
-    var hexDigits = "0123456789ABCDEF";
-    for (var i = 0; i < 36; i++) {
-        s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
-    }
-    s[14] = "4"; // bits 12-15 of the time_hi_and_version field to 0010
-    s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1); // bits 6-7 of the clock_seq_hi_and_reserved to 01
-    s[8] = s[13] = s[18] = s[23] = "-";
-    var uuid = s.join("");
-    return uuid;
-}
-//随机udid 小写
-function udid2() {
-    function S4() {
-        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-    }
-    return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
-}
-//编码
-function encodeUnicode(str) {
-    var res = [];
-    for (var i = 0; i < str.length; i++) {
-        res[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4);
-    }
-    return "\\u" + res.join("\\u");
-}
-//解码
-function decodeUnicode(str) {
-    str = str.replace(/\\/g, "%");
-    return unescape(str);
-}
 let isGetCookie = typeof $request !== 'undefined'
 if (isGetCookie) {
     GetCookie()
@@ -362,9 +245,9 @@ async function all() {
     if (!Length) {
         $.msg(
             $.name,
-            '提示：⚠️请点击前往获取CK  https://h5.sxsjyzm.com/sesameH5/public/sesameLogin/register.html?onlyid=613647529\n',
-            'https://h5.sxsjyzm.com/sesameH5/public/sesameLogin/register.html?onlyid=613647529', {
-                "open-url": "https://h5.sxsjyzm.com/sesameH5/public/sesameLogin/register.html?onlyid=613647529"
+            '提示：⚠️请点击前往获取CK  https://h5.sxsjyzm.com/sesameH5/public/sesameLogin/register.html?onlyid=612545154\n',
+            'https://h5.sxsjyzm.com/sesameH5/public/sesameLogin/register.html?onlyid=612545154', {
+                "open-url": "https://h5.sxsjyzm.com/sesameH5/public/sesameLogin/register.html?onlyid=612545154"
             }
         );
         return;
@@ -373,29 +256,25 @@ async function all() {
 
         if (COOKIE.zhimabodyVal) {
             zhimabodyVal = ZM_COOKIES.zhimabodyVal[i];
-            zhimatxbodyVal = ZM_COOKIES.zhimatxbodyVal[i];
+            
         }
         if (!COOKIE.zhimabodyVal) {
             zhimabodyVal = zhimabodyArr[i];
-            zhimatxbodyVal = zhimatxbodyArr[i];
+            
         }
 
 
-        O = (`${$.name + (i + 1)}🔔`);
+         O = (`${$.name + (i + 1)}🔔`);
         await console.log(`-------------------------\n\n🔔开始运行【${$.name+(i+1)}】`)
 
 
-        console.log(`\n${O}\n========== 【${O}】 ==========\n`);
-        $.message += `\n${O}\n========== 【${O}】 ==========\n`;
-        let cookie_is_live = await zhimasx(); //运行
-        if (!cookie_is_live) {
-            continue;
-        }
-        await zhima() //收取晶石       
-        if (nowTimes.getHours() === 17 && CASH >= 0.3) {
-            await zhimatx(); //提现
-        }
-        await zhimasx(); //刷新
+console.log(`\n${O}\n========== 【${O}】 ==========\n`);
+                        $.message += `\n${O}\n========== 【${O}】 ==========\n`;
+           
+            await zhima(); //运行
+
+ 
+
     }
 }
 //通知
@@ -430,36 +309,28 @@ function zhimasx(timeout = 0) {
             let url = {
                 url: `https://api.sxsjyzm.com/api2/loot/index`,
                 headers: {
-                    'Accept': `*/*`,
-                    'wToken': ``,
-                    'Accept-Encoding': `gzip, deflate, br`,
-                    'Content-Type': `application/x-www-form-urlencoded`,
-                    'Connection': `keep-alive`,
-                    'Host': `api.sxsjyzm.com`,
-                    'User-Agent': `APP/5.0 CFNetwork/1206 Darwin/20.1.0`,
-                    'Accept-Language': `zh-cn`
-                },
+'Accept' : `*/*`,
+'wToken' : ``,
+'Accept-Encoding' : `gzip, deflate, br`,
+'Content-Type' : `application/x-www-form-urlencoded`,
+'Connection' : `keep-alive`,
+'Host' : `api.sxsjyzm.com`,
+'User-Agent' : `APP/4.7 CFNetwork/1206 Darwin/20.1.0`,
+'Accept-Language' : `zh-cn`
+},
                 body: zhimabodyVal,
             }
             $.post(url, async (err, resp, data) => {
                 try {
                     if (logs) $.log(`${O}, 芝嫲刷新🚩: ${data}`);
 
-                    $.zhimasx = JSON.parse(data);
+$.zhimasx= JSON.parse(data);
 
-                    if ($.zhimasx.code == 200) {
+                    if ($.zhimasx.code==200) {
 
-                        console.log(`【芝嫲刷新】:刷新成功\n`)
-                        $.message += `【芝嫲刷新】:刷新成功\n`
-                        resolve(true)
+                        console.log(`【芝麻刷新】:刷新成功\n`)
+                        $.message +=`【芝麻刷新】:刷新成功\n`
 
-                    }
-                    if ($.zhimasx.code == 2970) {
-                        $.msg(O, time(Number(tts())) + "❌❌❌COOKIE失效");
-                        if ($.isNode()) {
-                            notify.sendNotify(O, time(Number(tts())) + "❌❌❌COOKIE失效");
-                        }
-                        resolve(false)
                     }
 
                 } catch (e) {
@@ -471,6 +342,10 @@ function zhimasx(timeout = 0) {
         }, timeout)
     })
 }
+
+
+
+
 
 
 //zhima
@@ -480,48 +355,55 @@ function zhima(timeout = 0) {
 
 
             let url = {
-                url: `https://api.sxsjyzm.com/api2/loot/supquickgetloot`,
+                url: `https://api.sxsjyzm.com/api2/loot/quickgetloot`,
                 headers: {
-                    'Accept': `*/*`,
-                    'wToken': ``,
-                    'Accept-Encoding': `gzip, deflate, br`,
-                    'Content-Type': `application/x-www-form-urlencoded`,
-                    'Connection': `keep-alive`,
-                    'Host': `api.sxsjyzm.com`,
-                    'User-Agent': `APP/5.0 CFNetwork/1206 Darwin/20.1.0`,
-                    'Accept-Language': `zh-cn`
-                },
+'Accept' : `*/*`,
+'wToken' : ``,
+'Accept-Encoding' : `gzip, deflate, br`,
+'Content-Type' : `application/x-www-form-urlencoded`,
+'Connection' : `keep-alive`,
+'Host' : `api.sxsjyzm.com`,
+'User-Agent' : `APP/4.7 CFNetwork/1206 Darwin/20.1.0`,
+'Accept-Language' : `zh-cn`
+},
                 body: zhimabodyVal,
             }
             $.post(url, async (err, resp, data) => {
                 try {
                     if (logs) $.log(`${O}, 芝嫲收晶石🚩: ${data}`);
 
-                    $.zhima = JSON.parse(data);
+$.zhima= JSON.parse(data);
 
+                    if ($.zhima.code==200) {
 
-                    if ($.zhima.code == 200) {
+                        console.log(`【晶石收取】:${time(Number(tts()))}领取晶石成功,等待11秒后进行下次收取\n\n`)
+                        $.message +=`【晶石收取】:${time(Number(tts()))}领取晶石成功,等待11秒后进行下次收取\n\n`
 
-                        console.log(`【晶石收取】:${time(Number(tts()))}领取晶石成功,冷却3小时\n`)
-                        $.message += `【晶石收取】:${time(Number(tts()))}领取晶石成功,冷却3小时\n`
+await zhimasx()
+await $.wait(11000)
+await zhima()
 
+                    }
+
+if ($.zhima.code==1001) {
+
+                        console.log(`【晶石收取】:${$.zhima.mess},间隔11秒才能收取\n\n`)
+                        $.message +=`【晶石收取】:${$.zhima.mess},间隔11秒才能收取\n\n`
+
+                    }
+
+if ($.zhima.code==1002) {
+
+                        console.log(`【晶石收取】:${$.zhima.mess},间隔3小时才能收取\n\n`)
+                        $.message +=`【晶石收取】:${$.zhima.mess},间隔3小时才能收取\n\n`
 
                     }
 
 
+if ($.zhima.code==156) {
 
-                    if ($.zhima.code == 1002) {
-
-                        console.log(`【晶石收取】:${$.zhima.mess},间隔3小时才能收取\n`)
-                        $.message += `【晶石收取】:${$.zhima.mess},间隔3小时才能收取\n`
-
-                    }
-
-
-                    if ($.zhima.code == 156) {
-
-                        console.log(`【晶石收取】:${$.zhima.mess}\n`)
-                        $.message += `【晶石收取】:${$.zhima.mess}\n`
+                        console.log(`【晶石收取】:${$.zhima.mess}\n\n`)
+                        $.message +=`【晶石收取】:${$.zhima.mess}\n\n`
 
                     }
 
@@ -536,45 +418,6 @@ function zhima(timeout = 0) {
         }, timeout)
     })
 }
-
-
-//zhimatx
-function zhimatx(timeout = 0) {
-
-    return new Promise((resolve) => {
-
-        setTimeout(() => {
-            let url = {
-                url: `https://api.sxsjyzm.com/api2/loot/userWxCashSubmit`,
-                headers: {
-                    'Accept': `*/*`,
-                    'wToken': ``,
-                    'Accept-Encoding': `gzip, deflate, br`,
-                    'Content-Type': `application/x-www-form-urlencoded`,
-                    'Connection': `keep-alive`,
-                    'Host': `api.sxsjyzm.com`,
-                    'User-Agent': `APP/5.0 CFNetwork/1206 Darwin/20.1.0`,
-                    'Accept-Language': `zh-cn`
-                },
-                body: zhimatxbodyVal,
-            }
-            $.post(url, async (err, resp, data) => {
-                try {
-                    if (logs) $.log(`${O}, 芝嫲提现🚩: ${data}`);
-                    $.zhimatx = JSON.parse(data);
-
-                    console.log(`【芝嫲提现${CASH}元】:${$.zhimatx.mess}\n`)
-                    $.message += `【芝嫲提现${CASH}元】:${$.zhimatx.mess}\n`
-                } catch (e) {
-                    $.logErr(e, resp);
-                } finally {
-                    resolve()
-                }
-            })
-        }, timeout)
-    })
-}
-
 
 // prettier-ignore
 function Env(t, e) {
