@@ -15,6 +15,11 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     env:
       YOUTH_READ: ${{ secrets.YOUTH_READ }}
+      YOUTH_READ1: ${{ secrets.YOUTH_READ1 }}
+      YOUTH_READ2: ${{ secrets.YOUTH_READ2 }}
+      YOUTH_READ3: ${{ secrets.YOUTH_READ3 }}
+      YOUTH_READ4: ${{ secrets.YOUTH_READ4 }}
+      YOUTH_READ5: ${{ secrets.YOUTH_READ5 }}
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js 12.x
@@ -31,6 +36,10 @@ jobs:
           node task/Youth_Read.js
         env:
           YOUTH_READ: ${{ secrets.YOUTH_READ }}
-
+          YOUTH_READ1: ${{ secrets.YOUTH_READ1 }}
+          YOUTH_READ2: ${{ secrets.YOUTH_READ2 }}
+          YOUTH_READ3: ${{ secrets.YOUTH_READ3 }}
+          YOUTH_READ4: ${{ secrets.YOUTH_READ4 }}
+          YOUTH_READ5: ${{ secrets.YOUTH_READ5 }} 
 
                
