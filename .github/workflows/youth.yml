@@ -22,7 +22,7 @@ jobs:
       - name: Checkout
         run: |
             #git clone https://github.com/Sunert/Scripts.git ~/Scripts
-            git clone https://github.com/akuticlouds/actions-youth.git ~/actions-youth
+            git clone https://github.com/xbt370/Ac-JS-Script.git ~/Ac-JS-Script
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
@@ -37,8 +37,8 @@ jobs:
         if: env.YOUTH_HEADER
         run: |
           #cd ~/Scripts
-          cd ~/actions-youth
-          #node Task/youth.js
+          cd ~/Ac-JS-Script
+          #node youth.js
           node youth.js
         env:
           YOUTH_NOTIFY_CONTROL: ${{ secrets.YOUTH_NOTIFY_CONTROL }}
