@@ -33,7 +33,7 @@ jobs:
       - name: '运行 【中青看点自动阅读一】'
         if: env.YOUTH_READ
         run: |
-          node task/Youth_Read.js
+          node Youth_Read.js
         env:
           YOUTH_READ: ${{ secrets.YOUTH_READ }}
           YOUTH_READ1: ${{ secrets.YOUTH_READ1 }}
