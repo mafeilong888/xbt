@@ -29,7 +29,7 @@ jobs:
         run: |
           npm install
       - name: '运行 【易趣牛帮】'
-        if: env.XP_refreshTOKEN
+        if: env.YQNB_yqnbHEADER
         run: |
           node yqnb.js
         env:
